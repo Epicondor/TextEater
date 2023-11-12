@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Executer
+</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        #inputTextarea {
+	    background-color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            resize: none;
+            font-size: 18px;
+            color: #00FF00; /* Vivid green color */
+        }
+    </style>
+    <script>
+        var typingTimer;
+        
+        // Function to eat characters from the textarea
+        function eatCharacters() {
+            var textarea = document.getElementById("inputTextarea");
+            var currentText = textarea.value;
+            
+            if (currentText.length >= 5) {
+                textarea.value = currentText.substring(3);
+            } else {
+                textarea.value = "";
+            }
+        }
+        
+        // Function to start the character eating game
+        function startGame() {
+            clearInterval(typingTimer);
+            typingTimer = setInterval(eatCharacters, 1);
+        }
+        
+        // Function to handle the typing event
+        function handleTyping() {
+            clearInterval(typingTimer);
+            typingTimer = setInterval(eatCharacters, 1);
+        }
+    </script>
+</head>
+<body>
+    <textarea id="inputTextarea" rows="6" cols="50" oninput="handleTyping()"></textarea>
+</body>
+</html>
